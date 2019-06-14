@@ -1,0 +1,100 @@
+{# fields.html.twig #}
+{% block vich_image_widget %}
+    {% spaceless %}
+        <div class="vich-image">
+            <div class="col-md-3">
+                {% if image_uri %}
+                <label class="control-label">Imagen actual:</label>
+                <a href="#"><img src="{{ image_uri }}" class="img-thumbnail img-responsive" alt="" /></a>
+            {% endif %}
+            {% if download_uri %}
+                <a href="{{ download_uri }}">{{ translation_domain is same as(false) ? download_label : download_label|trans({}, translation_domain) }}</a>
+            {% endif %}
+            </div>
+            <div class="col-md-9">
+                <label class="control-label">Selecciona una imagen:</label>
+                {{ form_widget(form.file) }}
+                {% if form.delete is defined %}
+                    <div class="checkbox">
+                        <label>
+                            {{ form_widget(form.delete) }} Borrar imagen
+                        </label>
+                    </div>
+                    
+                {% endif %}
+            </div>
+        </div>
+    {% endspaceless %}
+{% endblock %}
+
+{% block datetime_widget %}
+{% spaceless %}
+    {% if widget == 'single_text' %}1
+        {{ block('field_widget') }}
+    {% else %}
+        <div {{ block('widget_container_attributes') }} class="input-group">
+            {{ form_errors(form.date.year) }}
+            {{ form_errors(form.date.month) }}
+            {{ form_errors(form.date.day) }}
+            {{ form_errors(form.time) }}
+            <span class="input-group-btn">
+            {{ form_widget(form.date.year, {'attr': {'class': 'form-control'} }) }}
+            </span>
+            <span class="input-group-btn">
+            {{ form_widget(form.date.month, {'attr': {'class': 'form-control'} }) }}
+            </span>
+            <span class="input-group-btn">
+            {{ form_widget(form.date.day, {'attr': {'class': 'form-control'} }) }}
+            </span>
+        </div>
+        <div {{ block('widget_container_attributes') }} class="input-group">
+            <span class="input-group-btn">
+            {{ form_widget(form.time.hour, { 'attr': { 'size': '1', 'class': 'form-control' } }) }}
+            </span>
+            <span class="input-group-btn">
+            {{ form_widget(form.time.minute, { 'attr': { 'size': '1', 'class': 'form-control' } }) }}
+            </span>
+        </div>
+    {% endif %}
+{% endspaceless %}
+{% endblock datetime_widget %}
+
+{% block date_widget %}
+{% spaceless %}
+    {% if widget == 'single_text' %}1
+        {{ block('field_widget') }}
+    {% else %}
+        <div {{ block('widget_container_attributes') }} class="input-group">
+            {{ form_errors(form.year) }}
+            {{ form_errors(form.month) }}
+            {{ form_errors(form.day) }}
+            <span class="input-group-btn">
+            {{ form_widget(form.year, {'attr': {'class': 'form-control'} }) }}
+            </span>
+            <span class="input-group-btn">
+            {{ form_widget(form.month, {'attr': {'class': 'form-control'} }) }}
+            </span>
+            <span class="input-group-btn">
+            {{ form_widget(form.day, {'attr': {'class': 'form-control'} }) }}
+            </span>
+        </div>
+    {% endif %}
+{% endspaceless %}
+{% endblock date_widget %}
+
+{% block time_widget %}
+{% spaceless %}
+    {% if widget == 'single_text' %}
+        {{ block('field_widget') }}
+    {% else %}
+        <div {{ block('widget_container_attributes') }} class="input-group">
+            <span class="input-group-btn">
+            {{ form_widget(form.hour, { 'attr': { 'size': '1', 'class': 'form-control' } }) }}
+            </span>
+            <span class="input-group-btn">
+            {{ form_widget(form.minute, { 'attr': { 'size': '1', 'class': 'form-control' } }) }}
+            </span>
+        </div>
+    {% endif %}
+{% endspaceless %}
+{% endblock time_widget %}

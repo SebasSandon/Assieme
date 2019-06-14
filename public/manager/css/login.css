@@ -1,0 +1,16 @@
+/*
+    File: login.css
+    Author: Crece Consultores
+*/
+
+/* wrapper */
+@media (min-width: 992px) {
+    #wrapper {
+        padding-left: 0px;
+    }
+}
+    
+/* login-wrapper */
+.login-wrapper {
+    margin-top: 90px;
+}

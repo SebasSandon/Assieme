@@ -1,0 +1,89 @@
+{# administrator/index.html.twig #}
+{% extends 'manager/base.html.twig' %}
+
+{% block title %}Cuentas de usuario{% endblock %}
+
+{% block stylesheets %}{% endblock %}
+
+{% block wrapper %}
+    <div id="page-head">
+        <div id="page-title">
+            <h1 class="page-header text-overflow">Cuentas de usuario <small>Crear</small></h1>
+        </div>
+
+        <ol class="breadcrumb">
+            <li><a href="#">assieme.manager</a></li>
+            <li><a href="{{ path('manager_welcome') }}">Inicio</a></li>
+            <li><a href="{{ path('manager_administrator') }}">Cuentas de usuario</a></li>
+            <li class="active">Crear</li>
+        </ol>
+    </div>
+
+    <!-- content -->
+    <div id="page-content">
+        <div class="col-md-12">
+            {% include 'manager/notification.html.twig' %}
+        </div>
+        <div class="col-md-12">
+            <div class="panel">
+		<div class="panel-heading">
+                    <h3 class="panel-title">Registro de cuentas de usuario</h3>
+		</div>
+                <!-- form -->
+                <form method="post" action="{{ path('manager_administrator_create') }}">
+                <div class="panel-body">
+                    <div class="form-container">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label class="control-label">Nombre de usuario:</label>
+                                    {{ form_widget(administratorForm.username) }}
+                                    <small class="help-block"></small>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label class="control-label">Contraseña:</label>
+                                    {{ form_widget(administratorForm.password) }}
+                                    <small class="help-block">Mínimo 6 y máximo 18 caracteres.</small>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label class="control-label">Nivel de privilegios:</label>
+                                    {{ form_widget(administratorForm.role) }}
+                                    <small class="help-block"></small>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label class="control-label">Nombre:</label>
+                                    {{ form_widget(administratorForm.name) }}
+                                    <small class="help-block"></small>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label class="control-label">Email:</label>
+                                    {{ form_widget(administratorForm.email) }}
+                                    <small class="help-block"></small>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                {{ form_widget(administratorForm._token) }}
+                            </div>
+                        </div>
+                    </div>
+		</div>
+                <div class="panel-footer text-right">
+                    <a class="btn btn-default" href="{{ app.request.headers.get('referer') }}">Cancelar</a>
+                    <button class="btn btn-success" type="submit"><i class="fa fa-fw fa-save"></i> Guardar</button>
+		</div>
+                </form>
+                <!-- end form -->
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}{% endblock %}

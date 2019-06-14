@@ -1,0 +1,47 @@
+{# sidenav.html.twig #}
+<ul class="nav navbar-nav">
+    <li class="list-header">Usuario</li>
+    <li>
+        <a href="{# path('manager_profile_update') #}"><i class="fa fa-fw fa-user"></i> {{ app.user.username }} [{{ app.user.role }}]</a>
+    </li>
+    <li>
+        <a href="{{ path('manager_logout') }}"><i class="fa fa-fw fa-sign-out"></i> Desconectarme</a>
+    </li>
+    <li class="list-header">Sistema</li>
+    <li>
+        <a href="{{ path('manager_welcome') }}"><i class="fa fa-fw fa-dashboard"></i> Inicio</a>
+    </li>
+    <li>
+        <a href="{{ path('manager_administrator') }}"><i class="fa fa-fw fa-user-secret"></i> Cuentas de usuario</a>
+    </li>
+    <li class="list-header">Configuración</li>
+    <li>
+        <a href=#><i class="fa fa-fw fa-calendar"></i> Períodos</a>
+    </li>
+    <li>
+        <a href="javascript:;" data-toggle="collapse" data-target="#incomes-sub"><i class="fa fa-fw fa-money"></i> Ingresos <i class="arrow"></i></a>
+        <ul id="incomes-sub" class="collapse">
+            <li><a href="income-group.php">Grupos</a></li>
+            <li><a href="income-category.php">Categorías</a></li>
+            <li><a href="profit-centre.php">Centros de Utilidad</a></li>
+            <li><a href="income.php?action=create">Registro</a></li>
+            <li><a href="income.php">Ingresos</a></li>
+        </ul>
+    </li>
+    <li>
+        <a href="javascript:;" data-toggle="collapse" data-target="#expenses-sub"><i class="fa fa-fw fa-money"></i> Egresos <i class="arrow"></i></a>
+        <ul id="expenses-sub" class="collapse">
+            <li><a href="expense-group.php">Grupos</a></li>
+            <li><a href="expense-category.php">Categorías</a></li>
+            <li><a href="cost-centre.php">Centros de Costo</a></li>
+            <li><a href="expense.php?action=create">Registro</a></li>
+            <li><a href="expense.php">Egresos</a></li>
+        </ul>
+    </li>
+    <li>
+        <a href="flow-report.php?action=begin"><i class="fa fa-fw fa-line-chart"></i> Reporte de flujo</a>
+    </li>
+    <li>
+        <a href="daily-report.php?action=begin"><i class="fa fa-fw fa-line-chart"></i> Reporte de arqueo</a>
+    </li>
+</ul>

@@ -1,0 +1,57 @@
+{# administrator/delete.html.twig #}
+{% extends 'manager/base.html.twig' %}
+
+{% block title %}Cuentas de usuario{% endblock %}
+
+{% block stylesheets %}{% endblock %}
+
+{% block wrapper %}
+    <div id="page-head">
+        <div id="page-title">
+            <h1 class="page-header text-overflow">Cuentas de usuario <small>Eliminar</small></h1>
+        </div>
+            
+        <ol class="breadcrumb">
+            <li><a href="#">eolo.manager</a></li>
+            <li><a href="{{ path('manager_welcome') }}">Inicio</a></li>
+            <li><a href="{{ path('manager_administrator') }}">Cuentas de usuario</a></li>
+            <li class="active">Eliminar</li>
+        </ol>
+    </div>
+        
+    <!-- content -->
+    <div id="page-content">
+        <div class="col-md-12">
+            {% include 'manager/notification.html.twig' %}
+        </div>
+        <div class="col-md-12">
+            <div class="panel">
+		<div class="panel-heading">
+                    <h3 class="panel-title">Registro de cuentas de usuario</h3>
+		</div>
+                <!-- form -->
+                {{ form_start(deleteForm) }}
+                <div class="panel-body">
+                    <div class="form-container">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <div class="alert alert-danger" role="alert">¿Confirma la eliminación del registro <b>{{ administrator.username }}</b> [{{ administrator.id }}]? <i>Esta acción es irreversible.</i></div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            {{ form_rest(deleteForm) }}
+                        </div>
+                    </div>
+		</div>
+                <div class="panel-footer text-right">
+                    <a class="btn btn-default" href="javascript: history.back(1);">Cancelar</a>
+                    <button class="btn btn-danger" type="submit"><i class="fa fa-fw fa-trash"></i> Eliminar</button>
+		</div>
+                {{ form_end(deleteForm) }}
+                <!-- end form -->
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}{% endblock %}

@@ -1,0 +1,53 @@
+{# base.html.twig #}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    
+    <title>{% block title %}Ingreso{% endblock %} - assieme.v1</title>
+
+    <link rel="icon" type="image/icon" href="">
+    
+    <link rel="stylesheet" href="{{ asset('manager/css/bootstrap-3.3.7/css/bootstrap.min.css') }}" />
+    <link rel="stylesheet" href="{{ asset('manager/css/font-awesome-4.7.0/css/font-awesome.min.css') }}">
+    <!-- styles -->
+    <link rel="stylesheet" href="{{ asset('manager/css/main.css') }}" />
+    {% block stylesheets %}{% endblock %}
+</head>
+<body>
+    <!-- header -->
+    <header>
+        {% include 'manager/header.html.twig' %}
+    </header>
+    
+    <!-- sidenav -->
+    <nav id="sidenav" class="collapse navbar-collapse">
+        {% include 'manager/sidenav.html.twig' %}
+    </nav>
+    
+    <!-- wrapper -->
+    <div id="wrapper">
+        {% block wrapper %}{% endblock %}
+        <div class="clearfix"></div>
+    </div>   
+        
+    <!-- footer -->
+    <footer></footer>
+    
+    
+<!-- jquery -->
+<script type="text/javascript" src="{{ asset('manager/js/libs/jquery-3.2.1/jquery-3.2.1.min.js') }}"></script>
+<!-- bootstrap -->
+<script type="text/javascript" src="{{ asset('manager/css/bootstrap-3.3.7/js/bootstrap.min.js') }}"></script>
+<!-- jquery.form -->
+<script type="text/javascript" src="{{ asset('manager/js/libs/jquery.form/jquery.form.js') }}"></script>
+<!-- scripts -->
+<script type="text/javascript" src="{{ asset('manager/js/apps/mainnav.js') }}"></script>
+<script type="text/javascript" src="{{ asset('manager/js/apps/forms.js') }}"></script>
+{% block javascripts %}{% endblock %}
+</body>
+</html>

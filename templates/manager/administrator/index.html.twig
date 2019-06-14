@@ -1,0 +1,89 @@
+{# administrator/index.html.twig #}
+{% extends 'manager/base.html.twig' %}
+
+{% block title %}Cuentas de usuario{% endblock %}
+
+{% block stylesheets %}{% endblock %}
+
+{% block wrapper %}
+    <div id="page-head">
+        <div id="page-title">
+            <h1 class="page-header text-overflow">Cuentas de usuario</h1>
+        </div>
+            
+        <ol class="breadcrumb">
+            <li><a href="#">assieme.manager</a></li>
+            <li><a href="{{ path('manager_welcome') }}">Inicio</a></li>
+            <li class="active">Cuentas de usuario</li>
+        </ol>
+    </div>
+        
+    <!-- content -->
+    <div id="page-content">
+        <div class="col-md-12">
+            {% include 'manager/notification.html.twig' %}
+        </div>
+        <div class="col-md-12">
+            <div class="panel">
+		<div class="panel-heading">
+                    <h3 class="panel-title">Registro de cuentas de usuario</h3>
+		</div>
+                <div class="panel-body">
+                    <div class="panel-toolbar form-inline">
+			<div class="row">
+                            <div class="col-sm-6 toolbar-left">
+				<a class="btn btn-success" href="{{ path('manager_administrator_create') }}"><i class="fa fa-fw fa-plus"></i> Agregar</a>
+                            </div>
+                            <div class="col-sm-6 toolbar-right">
+                                <a class="btn btn-default" href="{% if currentPage != 1 %}{{ path('manager_administrator', {'page': currentPage - 1}) }}{% else %}#{% endif %}" {% if currentPage == 1 %}disabled="disabled"{% endif %}>← Anterior</a>
+                                <select class="form-control" onchange="location = this.options[this.selectedIndex].value;">
+                                    {% for i in 1..pagesCount %}
+                                        <option value="{{ path('manager_administrator', {'page': i}) }}" {% if currentPage == i %}selected="selected" {% endif %}>{{ i }}</option>
+                                    {% endfor %}
+                                </select>
+                                <a class="btn btn-default" href="{% if currentPage < pagesCount %}{{ path('manager_administrator', {'page': currentPage + 1}) }}{% else %}#{% endif %}" {% if currentPage >= pagesCount %}disabled="disabled"{% endif %}>Siguiente →</a>
+                            </div>
+			</div>
+                    </div>
+                    <div class="table-container table-responsive">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th width="40" class="text-center">#</th>
+                                    <th>Nombre de Usuario</th>
+                                    <th width="160" class="text-center">Nivel</th>
+                                    <th width="50" class="text-center">Modificar</th>
+                                    <th width="50" class="text-center">Eliminar</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for administrator in administrators %}
+                                    <tr>
+                                        <td class="text-center">{{ administrator.id }}</td>
+                                        <td>{{ administrator.username }}</td>
+                                        <td class="text-center">{{ administrator.role }}</td>
+                                        <td class="text-center">
+                                            {% if (is_granted('ROLE_ADMIN') and administrator.id != 1) %}
+                                            <a class="btn btn-default btn-sm" href="{{ path('manager_administrator_update', {'id': administrator.id}) }}"><i class="fa fa-fw fa-pencil"></i></a>
+                                            {% endif %}
+                                        </td>
+                                        <td class="text-center">
+                                            {% if (is_granted('ROLE_ADMIN') and administrator.id != 1) %}
+                                            <a class="btn btn-default btn-sm" href="{{ path('manager_administrator_delete', {'id': administrator.id}) }}"><i class="fa fa-fw fa-trash"></i></a>
+                                            {% endif %}
+                                        </td>
+                                    </tr>
+                                {% else %}
+                                    <tr>
+                                        <td class="text-center" colspan="100%">No hay registros</td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>                             
+                    </div>
+		</div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}{% endblock %}
